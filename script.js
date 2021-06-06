@@ -6,22 +6,15 @@
  * *if not in the left
  * Else return not found
  **/
-let hundredNumerals = [
-    91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
-    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-    71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
-    31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-    81, 82, 83, 84, 85, 86, 87, 88, 89, 90
-]
-let sortedNum = hundredNumerals.sort((a, b) => { return a - b });
-document.querySelector("#arrayNum").insertAdjacentHTML("beforeend", `${sortedNum}`);
+// let HUNDREDNUMBER = hundredNumerals.sort((a, b) => { return a - b });
+const HUNDREDNUMBER = [];
+for (var i = 1; i <= 100; i++) {
+    HUNDREDNUMBER.push(i);
+}
+document.querySelector("#arrayNum").insertAdjacentHTML("beforeend", `[${HUNDREDNUMBER}]`);
 
-function searchNumber(arr, l, r, search) {
+//Find the index of the number in search
+function findNumberIndex(arr, l, r, search) {
 
     if (r >= l) {
         let middle = l + Math.round((r - l) / 2);
@@ -29,23 +22,24 @@ function searchNumber(arr, l, r, search) {
         if (arr[middle] == search) {
             return middle
         }
+        //If number is on the 
         if (arr[middle] > search) {
-            return searchNumber(arr, l, middle - 1, search)
+            return findNumberIndex(arr, l, middle - 1, search)
         }
-        return searchNumber(arr, middle + 1, r, search)
+        return findNumberIndex(arr, middle + 1, r, search)
     }
     return alert("Enter a valid number")
 }
 
 document.querySelector("#clk-btn").addEventListener("click", () => {
     console.log("CLick");
-    const SEARCHINGNUMBER = Number(document.querySelector("#num").value);
+    const SEARCHNUMBER = Number(document.querySelector("#num").value);
 
-    let arra = sortedNum;
+    let arra = HUNDREDNUMBER;
     let right = arra.length;
-    let result = searchNumber(arra, 0, right - 1, SEARCHINGNUMBER);
+    let result = findNumberIndex(arra, 0, right - 1, SEARCHNUMBER);
 
     document.querySelector("#searchPos").insertAdjacentHTML("beforebegin",
-        `Indext of the number is: ${result}`)
+        `The Indext of ${SEARCHNUMBER} is: ${result}`)
 
 })

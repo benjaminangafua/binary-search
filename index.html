@@ -10,9 +10,10 @@
 </head>
 
 <body>
-    <h2>Using Binary Search to find a number 💬</h2>
+    <!-- The program using binary search to find a number -->
+    <h2>Using Binary Search <br>to find a number 💬</h2>
 
-    <input id="num" placeholder="Search for a Number from this list">
+    <input id="num" placeholder="Enter number to search">
     <button id="clk-btn" onclick="findNumber()">Search Num</button>
 
     <p>
@@ -25,45 +26,54 @@
 
     <script src="./script.js"></script>
     <script>
+        /**
+         * This function takes two parameters:
+         *  number to search and
+         *  array of 100 number to search in
+         */
         function search(num, arr) {
-
             let mid = Math.round(arr.length / 2);
 
+            /**
+             * Return a array of the searched when met
+             */
             if (num == arr[mid]) {
-                return arr
+                return num;
             } else {
-                if (num < arr[mid]) {
+                /**
+                 * If the number in search is less than the middle
+                 *  remove all number greater than the middle
+                 */
+                if (arr[mid] > num) {
+                    console.log(arr[mid] + " is greater than " + num + " checking left");
                     arr.splice(mid);
-                    console.log("This is", arr);
-
-                } else if (num > arr[mid]) {
-                    arr.splice(0, mid);
                     console.log(arr);
-                    for (var i = 0; i < arr.length; i++) {
-                        if (num == arr[i]) {
-                            console.log(`The number is : ${arr[i]}`);
+                    /**
+                     * If the number in search is greater than the middle
+                     *  remove all number less than the middle
+                     */
+                    return search(num, arr);
 
-                        }
-                    }
+                } else if (arr[mid] < num) {
+                    console.log(arr[mid] + " is less than " + num + " checking right");
+                    arr.splice(0, mid + 1);
+                    console.log(arr);
+
+                    return search(num, arr);
+
                 }
-                console.log("Divide and Check");
-                search(num, arr);
             }
         }
-        let array_of_num = [
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-            21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-            31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-            41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-            51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-            61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
-            71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
-            81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
-            91, 92, 93, 94, 95, 96, 97, 98, 99, 100
-        ]
 
         function findNumber() {
+            //Hundred to search in
+            let array_of_num = [];
+            for (var i = 1; i <= 100; i++) {
+                array_of_num.push(i);
+            }
+            console.log(array_of_num);
+
+            //The number to be search for
             const get_num = Number(document.querySelector("#num").value);
             search(get_num, array_of_num);
         }

@@ -1,3 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: auto 20%;
+}
+
 #arrayNum {
     width: 50%;
 }

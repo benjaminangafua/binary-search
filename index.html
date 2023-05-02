@@ -25,59 +25,6 @@
     </p>
 
     <script src="./script.js"></script>
-    <script>
-        /**
-         * This function takes two parameters:
-         *  number to search and
-         *  array of 100 number to search in
-         */
-        function search(num, arr) {
-            let mid = Math.round(arr.length / 2);
-
-            /**
-             * Return a array of the searched when met
-             */
-            if (num == arr[mid]) {
-                return num;
-            } else {
-                /**
-                 * If the number in search is less than the middle
-                 *  remove all number greater than the middle
-                 */
-                if (arr[mid] > num) {
-                    console.log(arr[mid] + " is greater than " + num + " checking left");
-                    arr.splice(mid);
-                    console.log(arr);
-                    /**
-                     * If the number in search is greater than the middle
-                     *  remove all number less than the middle
-                     */
-                    return search(num, arr);
-
-                } else if (arr[mid] < num) {
-                    console.log(arr[mid] + " is less than " + num + " checking right");
-                    arr.splice(0, mid + 1);
-                    console.log(arr);
-
-                    return search(num, arr);
-
-                }
-            }
-        }
-
-        function findNumber() {
-            //Hundred to search in
-            let array_of_num = [];
-            for (var i = 1; i <= 100; i++) {
-                array_of_num.push(i);
-            }
-            console.log(array_of_num);
-
-            //The number to be search for
-            const get_num = Number(document.querySelector("#num").value);
-            search(get_num, array_of_num);
-        }
-    </script>
 </body>
 
 </html>
